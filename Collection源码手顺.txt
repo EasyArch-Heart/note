@@ -1,0 +1,26 @@
+public interface Collection<E> extends Iterable<E>
+1) 继承迭代器
+2）变量：
+	size 元素数量
+3）方法：
+	布朗型的 isEmpty 
+	没有元素返回true
+	布朗型的 contains(Object o)  
+	如果至少有指定的o元素一个就返回true，如果制定类型跟此集合不符， 报 ClassCastException，指定元素为空 报NullPointerException 
+	Iterator<E> iterator() 
+	获得迭代器 不保证迭代顺序除非实现此接口的集合有此保证
+	Object[] toArray() 
+	返回包含此集合中所有元素的数组。如果此集合对迭代器返回元素的顺序作出任何保证则此方法必须以相同的顺序返回素。
+	<T> T[] toArray(T[] a) 
+	返回包含此集合中所有元素的数组，返回类型事指定类型，如果集合符合指定的数组，则在其中返回，否则，将为新数组分配指定数组的运行时类型和此集合的大小，如果指定的类型跟此集合的类型不一样，报ArrayStoreException，如果指定的数组是空 则NullPointerException 
+	boolean add(E e)
+	由于元素问题加不进来，报IllegalArgumentException 如果有限制添加不了了，报IllegalStateException
+	boolean remove(Object o) 删除指定元素，成功反true 不让删除报，unsupportedOperationException
+类型不匹配报 ClassCastException，指定元素为空，报 NullPointerException
+	boolean containsAll(Collection<?> c) 包含指定集合内的所有元素反true  有类型不匹配的就报ClassCastException 指定集合是空就报 NullPotterException
+	boolean addAll(Collection<? extends E> c) 添加指定集合的所有元素，成功反true 不让添就报，UnSupportedException，类型不匹配就报，ClassCastException，空的就报NullPotterException，因为元素的自身原因加不进来报，IllegalArgumentException
+	boolean removeAll(Collection<?> c) 删除指定集合的所有元素 如果成功反true 不让删报UnsupportedOperationException，类型不匹配报ClassCastException，指定集合是空报NullPointerException
+	default boolean removeIf(Predicate<? super E> filter) 此为接口实现的方法，删除所有匹配指定元素的元素，如果指定的元素为空，则报NullPotterException，如果不让删报UnSupportedException。
+	boolean retainAll(Collection<?> c) 删除指定集合中没有的元素 不让删，类型不匹配，空集合，报错
+	void clear() 删了所有 不让删报错
+	boolean equals(Object o) 比较指定的o与此集合
